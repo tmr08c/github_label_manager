@@ -14,7 +14,9 @@ defmodule Github.Label do
 
   @spec add(%Label{}, [%Repository{}], String.t, module) :: [:ok | {:error, String.t}]
   def add(label, repos, access_token, api) when is_list(repos) do
-    Enum.map repos, fn (repo) -> add(label, repo, access_token, api) end
+    repos
+    |> Enum.map(&Task.async(fn () -> add(label, &1, access_token, api) end))
+    |> Enum.map(&Task.await/1)
   end
 
   @spec add(%Label{}, %Repository{}, String.t, module) :: :ok | {:error, String.t}
