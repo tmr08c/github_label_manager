@@ -1,0 +1,7 @@
+* TODO Get repositories 
+* TODO Adds label to repo
+* TODO Better handle access token stuff
+  This will probably end up needing to be passed in from the front end. For now we can use from the  "149501c6030ae6fc0b6cee01b0033c885db044dc"
+* TODO Figure out how to handle private versus public repositories
+  For now I am going to start out just focusing on private but at some point we will need to allow for both and need to decide where that decision is made. It seems like it would be decided intially in the web interface when you log in (like Waffle does) but we would need to have some sort of indication that we keep around that we send to the back end to know which functions to call. I think the main (only?) place this becomes a thing is when getting the repo list because we have to call a function to list personal or organzational repos
+
