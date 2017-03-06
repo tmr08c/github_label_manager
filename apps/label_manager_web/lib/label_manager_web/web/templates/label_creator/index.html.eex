@@ -1,0 +1,17 @@
+Hello
+
+Create a Label
+
+You have access to the following repos:
+
+<%= for repo <- @repos do %>
+    <%= repo.name %>
+<% end %>
+
+
+<%= form_for @conn, label_creator_path(@conn, :create), [as: :label], fn f -> %>
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= label f, :color %>
+  <%= color_input f, :color %>
+<% end %>
