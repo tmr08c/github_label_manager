@@ -6,7 +6,7 @@ defmodule Github.RepositoryTest do
   describe "listing an organizations repositories" do
     test "raises an error when no access token is given" do
       assert_raise Github.API.AccessTokenRequired, fn ->
-        Github.Repository.all_for_org("", "org_name") 
+        Github.Repository.all("") 
       end
     end
 
@@ -15,19 +15,19 @@ defmodule Github.RepositoryTest do
       defmodule TestAPIModule do
         @behaviour Github.API.Behaviour
 
-        def org_repos(_, _) do
+        def all_repos(_) do
           [
             RepositoryTest.repo_response_factory("owner1", "repo1"),
-            RepositoryTest.repo_response_factory("owner1", "repo2")
+            RepositoryTest.repo_response_factory("owner2", "repo2")
           ]
         end
       end
 
-      repos = Github.Repository.all_for_org("access_token", "org_name", TestAPIModule)
+      repos = Github.Repository.all("access_token", TestAPIModule)
 
       assert repos == [
         %Repository{owner: "owner1", name: "repo1"},
-        %Repository{owner: "owner1", name: "repo2"}
+        %Repository{owner: "owner2", name: "repo2"}
       ]
     end
   end

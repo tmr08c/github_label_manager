@@ -5,8 +5,8 @@ defmodule Github.Repository do
 
   @api_module API
 
-  def all_for_org(access_token, org_name, api_module \\ @api_module) do
-    Enum.map(api_module.org_repos(access_token, org_name), &to_struct/1)
+  def all(access_token, api_module \\ @api_module) do
+    Enum.map(api_module.all_repos(access_token), &to_struct/1)
   end
 
   defp to_struct(api_repository_response) do

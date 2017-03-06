@@ -1,5 +1,5 @@
 defmodule Github.API.Behaviour do
-  @callback org_repos(access_token :: String.t, org_name :: Sring.t) :: list[map]
+  @callback all_repos(access_token :: String.t) :: list[map]
 
   @callback add_label_to_repo(
     access_token :: String.t,

@@ -4,10 +4,10 @@ defmodule Github.API do
   alias Tentacat.{Client, Repositories}
   alias Tentacat.Repositories.{Labels}
 
-  def org_repos(access_token, org_name) do
+  def all_repos(access_token) do
     access_token
     |> client
-    |> repository_list(org_name)
+    |> repository_list
   end
 
   def add_label_to_repo(access_token, repo_owner, repo_name, label_name, label_color) do
@@ -19,7 +19,7 @@ defmodule Github.API do
   defp client(access_token) when is_binary(access_token) and byte_size(access_token) == 0,  do: raise Github.API.AccessTokenRequired
   defp client(access_token) when is_binary(access_token), do: Client.new(%{access_token: access_token})
 
-  defp repository_list(client, org_name), do: Repositories.list_orgs(org_name, client)
+  defp repository_list(client), do: Repositories.list_mine(client)
 
   defp repo_label_create(client, repo_owner, repo_name, label_name, label_color) do
     Labels.create(repo_owner, repo_name, %{name: label_name, color: label_color}, client)
