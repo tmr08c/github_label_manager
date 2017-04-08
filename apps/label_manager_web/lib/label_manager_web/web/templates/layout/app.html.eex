@@ -15,6 +15,15 @@
       <nav class="navbar navbar-default navbar-static-top" role="navigation">
           <div class="container-fluid">
               <a class="navbar-brand" href="/">Github Label Adder</a>
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <%= if @access_token do %>
+                          <%= link("Log Out", to: auth_path(@conn, :delete), method: "delete", class: "navbar-text") %>
+                      <% else %>
+                          <%= link("Log In", to: auth_path(@conn, :index, "github")) %>
+                      <% end %>
+                  </li>
+              </ul>
           </div>
       </nav>
     <div class="container-fluid">

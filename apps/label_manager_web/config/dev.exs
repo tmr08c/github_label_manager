@@ -47,3 +47,9 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Configure Oauth for dev evironment
+config :label_manager_web, GitHub,
+  client_id: "1d695247526029618e0b", # System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: "55134389732020571b022cf106018408991082fa", # System.get_env("GITHUB_CLIENT_SECRET"),
+  redirect_uri: "http://localhost:4000/auth/github/callback" # System.get_env("GITHUB_REDIRECT_URI")

@@ -5,11 +5,8 @@ defmodule LabelManagerWeb.Web.LabelCreatorController do
   alias Github.{Label, Repository}
 
   def index(conn, _params) do
-    # TODO refactor this out; try to follow new Phoenix structure 
-
-    repos = %User{access_token: "149501c6030ae6fc0b6cee01b0033c885db044dc"}
+    repos = %User{access_token: conn.assigns.access_token}
     |> User.list_repositories()
-
 
     conn
     |> assign(:repos, repos)

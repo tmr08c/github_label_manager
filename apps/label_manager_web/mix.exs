@@ -21,7 +21,7 @@ defmodule LabelManagerWeb.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {LabelManagerWeb.Application, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :oauth2]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,6 +38,8 @@ defmodule LabelManagerWeb.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:github, in_umbrella: true}]
+     {:github, in_umbrella: true},
+     {:oauth2, "~> 0.7"},
+    ]
   end
 end
