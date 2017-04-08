@@ -59,6 +59,9 @@ config :logger, level: :info
 #     config :label_manager_web, LabelManagerWeb.Web.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :label_manager_web, LabelManagerWeb.Web.Endpoint,
+  # secret_key_base: "kPNp+IXPm3hv/vFTRz30q5uxRyyUrmOJ1HbxuvfUJXDqpGOErgV5CzUMBm4BrB+r"
+  http: [port: {:system, "PORT"}],
+  url: [host: "protected-beyond-41181.herokuapp.com", port: 443],
+  cache_static_manifest: "priv/static/manifest.json",
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
