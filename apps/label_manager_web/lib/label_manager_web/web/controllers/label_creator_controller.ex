@@ -2,11 +2,12 @@ defmodule LabelManagerWeb.Web.LabelCreatorController do
   use LabelManagerWeb.Web, :controller
 
   alias LabelManagerWeb.Users.User
-  alias Github.{Label, Repository}
+  alias LabelManagerWeb.Labels.Creator, as: LabelCreator
 
   def index(conn, _params) do
-    repos = %User{access_token: conn.assigns.access_token}
-    |> User.list_repositories()
+    repos =
+      %User{access_token: conn.assigns.access_token}
+      |> User.list_repositories()
 
     conn
     |> assign(:repos, repos)
@@ -14,28 +15,13 @@ defmodule LabelManagerWeb.Web.LabelCreatorController do
   end
 
   def create(conn, params) do
-    IO.inspect(params)
-
-    repos = params["repos"]
-    |> Enum.filter_map(
-      fn({repo_name, checked}) -> checked == "true" end,
-    fn({repo_name, _}) ->
-      [owner, repo] = String.split(repo_name, "/")
-      %Github.Repository{owner: owner, name: repo}
-    end
+    LabelCreator.create(
+      params["repos"],
+      params["label"],
+      conn.assigns.access_token
     )
-    |> IO.inspect
 
-    # Make a label
-    # %{"color" => color, "name" => name} = params["label"]
-    #  Label.new(name, String.replace(color, "#", ""))
-    # |> Label.add(repos,  "149501c6030ae6fc0b6cee01b0033c885db044dc")
-
-    # repos = %User{access_token: "149501c6030ae6fc0b6cee01b0033c885db044dc"}
-    # |> User.list_repositories()
-
-    conn
-    |> assign(:repos, repos) # when we render a different page we shouldn't need this
-    |> render("index.html") # need to render a different page?
+     conn
+     |> redirect(to: label_creator_path(conn, :index))
   end
 end
