@@ -1,1 +1,1 @@
-web: cd apps/label_manager_web && MIX_ENV=prod mix run --no-halt
+web: cd apps/label_manager_web && MIX_ENV=prod mix phx.server
