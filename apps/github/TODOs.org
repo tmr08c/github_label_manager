@@ -1,5 +1,9 @@
-* TODO Get repositories 
+* DONE Get repositories 
+  CLOSED: [2017-04-07 Fri 19:30]
 * TODO Adds label to repo
+* TODO Form validations 
+** Label check 
+** Response from Github.label
 * TODO Better handle access token stuff
   This will probably end up needing to be passed in from the front end. For now we can use from the  "149501c6030ae6fc0b6cee01b0033c885db044dc"
 * TODO Figure out how to handle private versus public repositories

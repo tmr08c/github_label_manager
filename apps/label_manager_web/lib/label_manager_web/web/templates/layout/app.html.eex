@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <div class="container">
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <div class="container-fluid">
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
@@ -30,6 +31,5 @@
       </main>
 
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

@@ -1,17 +1,56 @@
-Hello
-
-Create a Label
-
-You have access to the following repos:
-
-<%= for repo <- @repos do %>
-    <%= repo.name %>
-<% end %>
-
-
 <%= form_for @conn, label_creator_path(@conn, :create), [as: :label], fn f -> %>
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= label f, :color %>
-  <%= color_input f, :color %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Create New Label</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-inline">
+                <div class="input-group">
+                    <%= label f, :name %>
+                    <%= text_input f, :name, class: "form-control" %>
+                </div>
+                <div class="input-group">
+                    <%= label f, :color %>
+                    <%= color_input f, :color, class: "form-control" %>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Select Repositories</h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                <%= tag(:input, type: "text", name: "repo-filter", placeholder: "Filter") %>
+            </div>
+
+            <div>
+                <div class='btn btn-default'class='btn btn-default'  id='select-all'>Select All</div>
+                <div class='btn btn-default'class='btn btn-default'  id='select-none'>Select None</div>
+            </div>
+
+            <div class="flex-container">
+                <%= for repo <- @repos do %>
+                    <div class="repo">
+                        <%= checkbox(:repos, "#{repo.owner}/#{repo.name}") %>
+                        <em class="repo-owner small"><%= repo.owner %></em>
+                        <div class="repo-name"><%= repo.name %></div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <%= submit "Create" %>
 <% end %>
+
+<script>
+ (function() {
+     require("js/label_creation").addListeners();
+ })();
+</script>
