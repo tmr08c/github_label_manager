@@ -64,4 +64,7 @@ config :label_manager_web, LabelManagerWeb.Web.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "protected-beyond-41181.herokuapp.com", port: 443],
   cache_static_manifest: "priv/static/manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  redirect_uri:  System.get_env("GITHUB_REDIRECT_URI")
