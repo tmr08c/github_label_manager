@@ -22,10 +22,10 @@ defmodule LabelManagerWeb.Web.Router do
   end
 
   scope "/", LabelManagerWeb.Web do
-    pipe_through [:browser, LabelManagerWeb.Web.Plugs.FetchCurrentUser] # Use the default browser stack
+    pipe_through [:browser, LabelManagerWeb.Web.Plugs.FetchCurrentUser] 
 
-    get "/test", LabelCreatorController, :index
-    post "/test", LabelCreatorController, :create
+    get "/labels", LabelCreatorController, :index
+    post "/labels", LabelCreatorController, :create
   end
 
   scope "/auth", LabelManagerWeb.Web do
