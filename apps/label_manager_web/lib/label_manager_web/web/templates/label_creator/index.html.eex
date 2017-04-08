@@ -4,14 +4,14 @@
             <h3 class="panel-title">Create New Label</h3>
         </div>
         <div class="panel-body">
-            <div class="form-inline">
-                <div class="input-group">
-                    <%= label f, :name %>
-                    <%= text_input f, :name, class: "form-control" %>
+            <div class="row">
+                <div class="col-xs-10">
+                    <%= label f, :name, "Label Name", class: "sr-only" %>
+                    <%= text_input f, :name, placeholder: "New label name...", class: "form-control input-lg" %>
                 </div>
-                <div class="input-group">
-                    <%= label f, :color %>
-                    <%= color_input f, :color, class: "form-control" %>
+                <div class="col-xs-2">
+                    <%= label f, :color, "Label Color", class: "sr-only" %>
+                    <%= color_input f, :color, class: "form-control input-lg" %>
                 </div>
             </div>
 
@@ -25,28 +25,32 @@
             <h3 class="panel-title">Select Repositories</h3>
         </div>
         <div class="panel-body">
-            <div>
-                <%= tag(:input, type: "text", name: "repo-filter", placeholder: "Filter") %>
+            <div class="row">
+                <div class="col-xs-9">
+                    <%= tag(:input, type: "text", name: "repo-filter", placeholder: "Filter", class: "form-control input-lg") %>
+                </div>
+
+                <div class="col-xs-3">
+                    <div class='btn btn-default btn-lg'class='btn btn-default'  id='select-all'>Select All</div>
+                    <div class='btn btn-default btn-lg'class='btn btn-default'  id='select-none'>Select None</div>
+                </div>
             </div>
 
-            <div>
-                <div class='btn btn-default'class='btn btn-default'  id='select-all'>Select All</div>
-                <div class='btn btn-default'class='btn btn-default'  id='select-none'>Select None</div>
-            </div>
-
-            <div class="flex-container">
-                <%= for repo <- @repos do %>
-                    <div class="repo">
-                        <%= checkbox(:repos, "#{repo.owner}/#{repo.name}") %>
-                        <em class="repo-owner small"><%= repo.owner %></em>
-                        <div class="repo-name"><%= repo.name %></div>
-                    </div>
-                <% end %>
+            <div class="row">
+                <div class="flex-container">
+                    <%= for repo <- @repos do %>
+                        <div class="repo">
+                            <%= checkbox(:repos, "#{repo.owner}/#{repo.name}") %>
+                            <em class="repo-owner small"><%= repo.owner %></em>
+                            <div class="repo-name"><%= repo.name %></div>
+                        </div>
+                    <% end %>
+                </div>
             </div>
         </div>
     </div>
 
-    <%= submit "Create" %>
+    <%= submit "Create", class: "btn btn-lg btn-block btn-success center" %>
 <% end %>
 
 <script>
