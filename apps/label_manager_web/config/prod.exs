@@ -68,3 +68,8 @@ config :label_manager_web, LabelManagerWeb.Web.Endpoint,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
   client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
   redirect_uri:  System.get_env("GITHUB_REDIRECT_URI")
+
+config :label_manager_web, GitHub,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
